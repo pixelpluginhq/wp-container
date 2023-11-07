@@ -1,0 +1,4 @@
+phpunit.xml
+phpstan.neon
+phpcs.xml
+.idea

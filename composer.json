@@ -1,0 +1,53 @@
+{
+  "name": "pixelplugin/wp-container",
+  "description": "WordPress Container Plugin",
+  "license": "MIT",
+  "type": "wordpress-plugin",
+  "keywords": ["wordpress", "container", "plugin", "psr", "psr-11", "container-interface", "dependency injection", "di"],
+  "authors": [
+    {
+      "name": "PixelPlugin",
+      "email": "support@pixelplugin.com",
+      "homepage": "https://pixelplugin.com"
+    }
+  ],
+  "homepage": "https://pixelplugin.com",
+  "support": {
+    "issues": "https://github.com/pixelpluginhq/wp-container/issues",
+    "source": "https://github.com/pixelpluginhq/wp-container"
+  },
+  "require": {
+    "php": ">=7.0",
+    "composer/installers": "^1.0 || ^2.0",
+    "league/container": "^3.4"
+  },
+  "require-dev": {
+    "10up/wp_mock": "^0.3.0",
+    "phpcompatibility/php-compatibility": "^9.3",
+    "phpunit/phpunit": "^6.5",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "PixelPlugin\\WPContainer\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PixelPlugin\\WPContainer\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpcs",
+      "phpunit"
+    ]
+  }
+}
