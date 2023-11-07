@@ -28,6 +28,14 @@ final class Plugin
         global $wp_container;
 
         $wp_container = new Container();
+
+        /**
+         * Collect all definitions for the container from others.
+         *
+         * @since 1.0.0
+         *
+         * @param array $definitions container definitions.
+         */
         $definitions = apply_filters('wp_container', []);
 
         foreach ($definitions as $id => $value) {
