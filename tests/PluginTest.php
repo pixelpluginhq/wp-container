@@ -11,6 +11,7 @@ use PixelPlugin\WPContainer\Tests\Examples\OneMoreClass;
 use PixelPlugin\WPContainer\Tests\Examples\ClassWithParameters;
 use PixelPlugin\WPContainer\Tests\Examples\SomeInterface;
 use Psr\Container\ContainerInterface;
+use stdClass;
 use WP_Mock;
 use WP_Mock\Functions;
 use WP_Mock\Tools\TestCase;
@@ -81,7 +82,7 @@ final class PluginTest extends TestCase
      * @return void
      * @covers ::afterSetupTheme
      */
-    public function testAfterSetupThemeWithDefinitions()
+    public function testDefinitions()
     {
         /** @var ContainerInterface $wp_container */
         global $wp_container;
@@ -112,5 +113,21 @@ final class PluginTest extends TestCase
         $this->assertSame($someClassInstance, $wp_container->get(SomeClass::class));
         $this->assertInstanceOf(OneMoreClass::class, $wp_container->get(OneMoreClass::class));
         $this->assertInstanceOf(ClassWithParameters::class, $wp_container->get(ClassWithParameters::class));
+    }
+
+    /**
+     * @return void
+     */
+    public function testAutoWiring()
+    {
+        /** @var ContainerInterface $wp_container */
+        global $wp_container;
+
+        WP_Mock::expectFilter('wp_container', []);
+
+        $this->plugin->afterSetupTheme();
+
+        $this->assertConditionsMet();
+        $this->assertInstanceOf(stdClass::class, $wp_container->get(stdClass::class));
     }
 }

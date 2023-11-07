@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PixelPlugin\WPContainer;
 
 use League\Container\Container;
+use League\Container\ReflectionContainer;
 
 use function add_action;
 use function apply_filters;
@@ -28,6 +29,10 @@ final class Plugin
         global $wp_container;
 
         $wp_container = new Container();
+
+        $wp_container->delegate(
+            (new ReflectionContainer())->cacheResolutions()
+        );
 
         /**
          * Collect all definitions for the container from others.
