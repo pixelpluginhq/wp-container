@@ -7,6 +7,7 @@ namespace PixelPlugin\WPContainer\Tests;
 use League\Container\Container;
 use PixelPlugin\WPContainer\Plugin;
 use WP_Mock;
+use WP_Mock\Functions;
 use WP_Mock\Tools\TestCase;
 
 /**
@@ -26,6 +27,18 @@ final class PluginTest extends TestCase
         parent::setUp();
 
         $this->plugin = new Plugin();
+    }
+
+    /**
+     * @return void
+     */
+    public function testInitialization()
+    {
+        WP_Mock::expectActionAdded('after_setup_theme', [Functions::type(Plugin::class), 'afterSetupTheme'], 10, 0);
+
+        require dirname(__DIR__) . '/wp-container.php';
+
+        $this->assertConditionsMet();
     }
 
     /**
