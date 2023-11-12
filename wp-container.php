@@ -5,7 +5,7 @@
  *
  * Plugin Name: WP Container
  * Description: WP Container is a global PSR-compatible dependency container for WordPress applications.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Plugin URI: https://pixelplugin.com
  * Author: PixelPlugin
  * Author URI: https://pixelplugin.com
@@ -24,4 +24,4 @@ if (!function_exists('add_filter')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-(new Plugin())->run();
+(new Plugin(__FILE__))->run();

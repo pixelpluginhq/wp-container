@@ -4,6 +4,12 @@ All changes to `pixelplugin/wp-container` are documented here.
 
 ## Unreleased
 
+## 1.1.0 - 2023-11-12
+
+### Added
+
+- Simple page with container definitions in Tools menu.
+
 ## 1.0.0 - 2023-11-08
 
 ### Added

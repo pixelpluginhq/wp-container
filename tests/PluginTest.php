@@ -32,7 +32,7 @@ final class PluginTest extends TestCase
     {
         parent::setUp();
 
-        $this->plugin = new Plugin();
+        $this->plugin = new Plugin(dirname(__DIR__) . '/wp-container.php');
     }
 
     /**
@@ -40,7 +40,13 @@ final class PluginTest extends TestCase
      */
     public function testInitialization()
     {
+        WP_Mock::userFunction('register_deactivation_hook', [
+            'times' => 1,
+            'args' => [Functions::type('string'), Functions::type('array')]
+        ]);
+
         WP_Mock::expectActionAdded('after_setup_theme', [Functions::type(Plugin::class), 'afterSetupTheme'], 10, 0);
+        WP_Mock::expectActionAdded('admin_menu', [Functions::type(Plugin::class), 'adminMenu'], 10, 0);
 
         require dirname(__DIR__) . '/wp-container.php';
 
@@ -53,7 +59,13 @@ final class PluginTest extends TestCase
      */
     public function testRun()
     {
+        WP_Mock::userFunction('register_deactivation_hook', [
+            'times' => 1,
+            'args' => [Functions::type('string'), [$this->plugin, 'deactivationHook']]
+        ]);
+
         WP_Mock::expectActionAdded('after_setup_theme', [$this->plugin, 'afterSetupTheme'], 10, 0);
+        WP_Mock::expectActionAdded('admin_menu', [$this->plugin, 'adminMenu'], 10, 0);
 
         $this->plugin->run();
 
@@ -69,6 +81,11 @@ final class PluginTest extends TestCase
         global $wp_container;
 
         $this->assertNull($wp_container);
+
+        WP_Mock::userFunction('update_option', [
+            'times' => 1,
+            'args' => [Plugin::OPTION_DEFINITIONS, [], false]
+        ]);
 
         WP_Mock::expectFilter('wp_container', []);
 
@@ -86,6 +103,11 @@ final class PluginTest extends TestCase
     {
         /** @var ContainerInterface $wp_container */
         global $wp_container;
+
+        WP_Mock::userFunction('update_option', [
+            'times' => 1,
+            'args' => [Plugin::OPTION_DEFINITIONS, Functions::type('array'), false]
+        ]);
 
         $someClassInstance = new SomeClass();
 
@@ -122,6 +144,11 @@ final class PluginTest extends TestCase
     {
         /** @var ContainerInterface $wp_container */
         global $wp_container;
+
+        WP_Mock::userFunction('update_option', [
+            'times' => 1,
+            'args' => [Plugin::OPTION_DEFINITIONS, [], false]
+        ]);
 
         WP_Mock::expectFilter('wp_container', []);
 
