@@ -6,7 +6,7 @@ All changes to `pixelplugin/wp-container` are documented here.
 
 ## 1.2.0 - 2023-11-19
 
-## Changed
+### Changed
 
 - Use WP_List_Table for displaying definitions.
 
