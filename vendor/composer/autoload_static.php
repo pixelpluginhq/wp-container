@@ -171,6 +171,7 @@ class ComposerStaticInit3f0889dbfb6af70fc70bf9110302d847
         'League\\Container\\ServiceProvider\\ServiceProviderAggregate' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregate.php',
         'League\\Container\\ServiceProvider\\ServiceProviderAggregateInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderAggregateInterface.php',
         'League\\Container\\ServiceProvider\\ServiceProviderInterface' => __DIR__ . '/..' . '/league/container/src/ServiceProvider/ServiceProviderInterface.php',
+        'PixelPlugin\\WPContainer\\DefinitionsTable' => __DIR__ . '/../..' . '/src/DefinitionsTable.php',
         'PixelPlugin\\WPContainer\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',

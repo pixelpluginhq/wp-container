@@ -13,12 +13,9 @@ use function apply_filters;
 use function delete_option;
 use function esc_html;
 use function is_numeric;
-use function json_encode;
 use function register_deactivation_hook;
 use function sprintf;
 use function update_option;
-
-use const JSON_PRETTY_PRINT;
 
 /**
  * WordPress Container Plugin.
@@ -77,10 +74,10 @@ final class Plugin
         foreach ($definitions as $id => $value) {
             if (is_numeric($id)) {
                 $wp_container->add($value);
-                $defs[] = $value;
+                $defs[] = [$value, $value];
             } else {
                 $wp_container->add($id, $value);
-                $defs[$id] = is_callable($value) ? '<callable>' : $value;
+                $defs[] = [$id, is_callable($value) ? 'callable' : $value];
             }
         }
 
@@ -100,13 +97,17 @@ final class Plugin
      */
     public function managementPage()
     {
-        $definitions = get_option(self::OPTION_DEFINITIONS, []);
-
         echo sprintf(
-            '<div class="wrap"><h1>%s</h1><pre>%s</pre></div>',
-            esc_html(self::TITLE),
-            esc_html(json_encode($definitions, JSON_PRETTY_PRINT))
+            '<div class="wrap"><h1>%s</h1>',
+            esc_html(self::TITLE)
         );
+
+        $table = new DefinitionsTable();
+
+        $table->prepare_items();
+        $table->display();
+
+        echo '</div>';
     }
 
     /**

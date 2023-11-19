@@ -135,6 +135,7 @@ return array(
     'League\\Container\\ServiceProvider\\ServiceProviderAggregate' => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderAggregate.php',
     'League\\Container\\ServiceProvider\\ServiceProviderAggregateInterface' => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderAggregateInterface.php',
     'League\\Container\\ServiceProvider\\ServiceProviderInterface' => $vendorDir . '/league/container/src/ServiceProvider/ServiceProviderInterface.php',
+    'PixelPlugin\\WPContainer\\DefinitionsTable' => $baseDir . '/src/DefinitionsTable.php',
     'PixelPlugin\\WPContainer\\Plugin' => $baseDir . '/src/Plugin.php',
     'Psr\\Container\\ContainerExceptionInterface' => $vendorDir . '/psr/container/src/ContainerExceptionInterface.php',
     'Psr\\Container\\ContainerInterface' => $vendorDir . '/psr/container/src/ContainerInterface.php',

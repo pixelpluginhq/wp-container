@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '09f7d522851f7548639cecd80001493f630a604b',
+        'reference' => '4518abf5762782ed28df06f7bb6a584a37c2dd0b',
         'name' => 'pixelplugin/wp-container',
         'dev' => false,
     ),
@@ -40,7 +40,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '09f7d522851f7548639cecd80001493f630a604b',
+            'reference' => '4518abf5762782ed28df06f7bb6a584a37c2dd0b',
             'dev_requirement' => false,
         ),
         'psr/container' => array(
